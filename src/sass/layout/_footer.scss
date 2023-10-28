@@ -1,0 +1,44 @@
+footer {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  padding: 6rem 6rem 12rem;
+  background-color: $bg;
+
+  & > svg {
+    align-self: center;
+  }
+
+  .networks {
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 1.44rem;
+    }
+  }
+
+  ul {
+    padding-left: 1.5rem;
+  }
+
+  p,
+  li {
+    padding: 0.3rem 0;
+    color: $grey;
+  }
+
+  .copyright {
+    position: absolute;
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $grey;
+    font-size: 0.94rem;
+  }
+}

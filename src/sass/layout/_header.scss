@@ -1,0 +1,27 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 6rem;
+  background-color: $bg;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+    font-weight: 600;
+  }
+}
