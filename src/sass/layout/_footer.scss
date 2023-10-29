@@ -1,13 +1,34 @@
 footer {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-
-  padding: 6rem 6rem 12rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 6rem 2rem 12rem;
   background-color: $bg;
 
+  & > * {
+    min-width: 12rem;
+  }
+
+  @include from(700) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include from(1100) {
+    grid-template-columns: repeat(4, 1fr);
+    padding-inline: 6rem;
+  }
+
   & > svg {
-    align-self: center;
+    @include from(700) {
+      grid-column: 1 / 4;
+    }
+
+    @include from(1100) {
+      grid-column: 1/2;
+      align-self: center;
+    }
   }
 
   .networks {
@@ -25,8 +46,10 @@ footer {
     svg {
       cursor: pointer;
 
-      &:hover {
-        fill: $accent;
+      @include fine {
+        &:hover {
+          fill: $accent;
+        }
       }
     }
   }

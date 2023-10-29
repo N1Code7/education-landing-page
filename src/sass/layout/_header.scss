@@ -1,9 +1,27 @@
 header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 6rem;
   background-color: $bg;
+
+  @include to(1000) {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 7;
+    min-height: 7rem;
+  }
+
+  & > svg {
+    @include to(1000) {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      z-index: 6;
+      width: clamp(100px, 30vw, 136px);
+    }
+  }
 }
 
 nav {
@@ -11,10 +29,31 @@ nav {
   align-items: center;
   gap: 3rem;
 
+  @include to(1000) {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    transform: translateX(100%);
+    flex-direction: column;
+    justify-content: center;
+    background-color: $bg;
+    transition: transform 0.3s ease-out;
+
+    &.active {
+      transform: translateX(0);
+    }
+  }
+
   ul {
     display: flex;
     align-items: center;
     gap: 3.5rem;
+
+    @include to(1000) {
+      flex-direction: column;
+      gap: 2rem;
+      width: 18rem;
+    }
   }
 
   li {
@@ -26,21 +65,37 @@ nav {
     font-weight: 600;
     cursor: pointer;
 
-    &:hover::after {
-      transform: scaleX(1);
+    @include to(1000) {
+      font-size: min(10vw, 2rem);
     }
 
-    &::after {
-      content: "";
-      position: absolute;
-      top: 1.6rem;
-      left: 0;
-      height: 2px;
-      width: 100%;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease-out;
-      background-color: black;
+    @include fine {
+      &:hover::after {
+        transform: scaleX(1);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: calc(100% + 3px);
+        left: 0;
+        height: 2px;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease-out;
+        background-color: black;
+
+        @include to(1000) {
+          top: 100%;
+        }
+      }
+    }
+  }
+
+  .btn {
+    @include to(1000) {
+      font-size: min(10vw, 2rem);
     }
   }
 }

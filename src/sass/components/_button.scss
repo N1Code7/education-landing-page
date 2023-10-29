@@ -13,8 +13,10 @@
   transition: transform 0.3s ease-out;
   cursor: pointer;
 
-  &:hover {
-    transform: translateY(-0.5rem);
+  @include fine {
+    &:hover {
+      transform: translateY(-0.5rem);
+    }
   }
 
   &-primary {

@@ -42,7 +42,8 @@ $grey: hsla(0, 0%, 0%, 0.5);
 //
 
 body,
-button {
+button,
+input {
   font-family: "Poppins", sans-serif;
 }
 
@@ -54,40 +55,104 @@ main {
 h2 {
   font-size: 3rem;
   font-weight: 600;
+
+  @include to(600) {
+    max-width: calc(100vw - 3rem);
+    font-size: 1.75rem;
+  }
 }
 
 section {
-  padding-bottom: 15rem;
+  padding: 0 1rem 15rem;
+
+  @include to(600) {
+    padding-bottom: 5rem;
+  }
 }
 
 .hero {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, auto);
-  column-gap: 2rem;
+  column-gap: clamp(1px, 0.5vw, 2rem);
+
+  @include to(1000) {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 2rem;
+
+    width: fit-content;
+    margin: 10rem auto 0;
+  }
+
+  @include from(1100) {
+    padding-inline: 0;
+  }
 
   h1 {
     width: 26.75rem;
     font-size: 3rem;
     font-weight: 700;
+
+    @include to(600) {
+      max-width: calc(100vw - 3rem);
+      font-size: 2rem;
+    }
   }
 
   p {
     width: 34.375rem;
     color: $grey;
     font-size: 1.25rem;
+
+    @include to(600) {
+      max-width: calc(100vw - 2rem);
+      font-size: 1rem;
+    }
+  }
+
+  button {
+    @include to(600) {
+      justify-self: center;
+    }
   }
 
   aside {
     grid-column: 2/3;
     grid-row: 1 / 4;
+
+    img {
+      @include to(1100) {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
+
+    @include to(1000) {
+      grid-column: auto;
+      grid-row: auto;
+    }
   }
 }
 
 .course {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6.25rem;
+  gap: clamp(2rem, 9vw, 6.25rem);
+
+  @include from(1100) {
+    flex-direction: row;
+  }
+
+  img {
+    width: 80%;
+
+    @include from(600) {
+      width: auto;
+    }
+  }
 
   .right {
     h2 {
@@ -103,30 +168,60 @@ section {
 
     li {
       list-style-type: disc;
-      font-size: 1.5rem;
+      font-size: 1rem;
+
+      @include from(600) {
+        font-size: 1.5rem;
+      }
     }
   }
 }
 
 .subscribe {
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(2, auto);
-  column-gap: 5.69rem;
-  row-gap: 6.83rem;
+  grid-template-columns: 1fr;
+  // grid-template-rows: repeat(2, auto);
+  row-gap: clamp(2rem, 9vw, 6.83rem);
+
+  img {
+    justify-self: center;
+    width: 80%;
+
+    @include from(600) {
+      width: auto;
+    }
+
+    @include from(1100) {
+      justify-self: auto;
+    }
+  }
+
+  @include from(1100) {
+    grid-template-columns: repeat(2, auto);
+    column-gap: 5.69rem;
+  }
 
   form {
-    grid-column: 1/3;
     display: flex;
+    flex-wrap: wrap;
+    // flex-direction: column;
     justify-content: space-between;
+    gap: 1.5rem;
     padding: 2.5rem;
     background-color: $bg;
+
+    @include from(1100) {
+      grid-column: 1/3;
+      flex-direction: row;
+    }
   }
 
   input {
-    width: 18.75rem;
+    flex: 2 18.75rem;
     height: 4rem;
     border: none;
+    text-align: center;
+    font-size: 1.25rem;
 
     &::placeholder {
       text-align: center;
@@ -143,14 +238,28 @@ section {
 
 .community {
   position: relative;
-  height: 48.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 7rem);
   padding-bottom: 0;
 
+  @include from(1100) {
+    display: block;
+    height: 48.75rem;
+    min-height: auto;
+  }
+
   .text {
-    position: absolute;
-    top: 4rem;
+    margin: 0 auto;
     text-align: center;
     z-index: 2;
+
+    @include from(1100) {
+      position: absolute;
+      top: 4rem;
+    }
 
     h2 {
       max-width: 32rem;
@@ -168,33 +277,51 @@ section {
   }
 
   img:not(.ellipse) {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    display: block;
+    width: 100%;
+
+    @include from(1100) {
+      position: absolute;
+      bottom: 0;
+      right: -5rem;
+    }
   }
 
   .ellipse {
     position: absolute;
     z-index: 3;
     animation: randomMove 5s infinite linear;
+    width: 3rem;
+    aspect-ratio: 1;
+
+    @include from(600) {
+      width: auto;
+    }
 
     &:nth-of-type(1) {
-      top: 33.44rem;
-      left: 19.81rem;
+      top: 61%;
+      left: 29%;
     }
     &:nth-of-type(2) {
       top: 0;
-      left: 37.31rem;
+      left: 55%;
       animation-delay: 0.3s;
+
+      @include from(600) {
+        left: 80%;
+      }
+      @include from(1100) {
+        left: 55%;
+      }
     }
     &:nth-of-type(3) {
-      top: 25.06rem;
-      left: 2.5rem;
+      top: 49%;
+      left: 4%;
       animation-delay: 0.6s;
     }
     &:nth-of-type(4) {
-      top: 10.31rem;
-      left: 57.44rem;
+      top: 23%;
+      left: 85%;
       animation-delay: 0.9s;
     }
   }
