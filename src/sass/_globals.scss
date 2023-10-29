@@ -6,10 +6,6 @@
   box-sizing: border-box;
 }
 
-// li {
-//   list-style-type: none;
-// }
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 // Variables
@@ -17,6 +13,32 @@ $bg: hsla(40, 86%, 83%, 1);
 $accent: hsla(18, 81%, 42%, 1);
 $accent-2: hsla(20, 76%, 23%, 1);
 $grey: hsla(0, 0%, 0%, 0.5);
+//
+
+//Mixins
+@mixin from($size) {
+  @media (min-width: "#{$size}px") {
+    @content;
+  }
+}
+
+@mixin to($size) {
+  @media (max-width: "#{$size}px") {
+    @content;
+  }
+}
+
+@mixin coarse {
+  @media (pointer: coarse) {
+    @content;
+  }
+}
+
+@mixin fine {
+  @media (pointer: fine) {
+    @content;
+  }
+}
 //
 
 body,
@@ -154,6 +176,7 @@ section {
   .ellipse {
     position: absolute;
     z-index: 3;
+    animation: randomMove 5s infinite linear;
 
     &:nth-of-type(1) {
       top: 33.44rem;
@@ -162,14 +185,35 @@ section {
     &:nth-of-type(2) {
       top: 0;
       left: 37.31rem;
+      animation-delay: 0.3s;
     }
     &:nth-of-type(3) {
       top: 25.06rem;
       left: 2.5rem;
+      animation-delay: 0.6s;
     }
     &:nth-of-type(4) {
       top: 10.31rem;
       left: 57.44rem;
+      animation-delay: 0.9s;
+    }
+  }
+
+  @keyframes randomMove {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-5px, -7px);
+    }
+    40% {
+      transform: translate(2px, -3px);
+    }
+    60% {
+      transform: translate(5px, 5px);
+    }
+    80% {
+      transform: translate(1px, 3px);
     }
   }
 }
